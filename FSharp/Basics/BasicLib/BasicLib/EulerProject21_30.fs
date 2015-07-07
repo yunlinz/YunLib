@@ -45,3 +45,17 @@ module EulerProject21_30 =
 
     let Euler025FirstFibWithNDigits n = // using the constant time calculation of nth fibonacci number using Binet's formula, as n gets very large, psi^n->0 => F(n)->phi^n/sqrt5, so we take log10 of that and finds the first term that is greater than 1000
         int(Ceiling((float(n - 1) + 0.5 * Log10(5.)) / Log10((1. + sqrt 5.)/2.)))
+
+    let Euler026LongestRepeatingReciprocal n = // finds the number below n such that 1/n has the longest repeating numbers...do long division until we find the same remainder
+        let rec LongDivide numer n rem =
+            if (List.exists (fun x -> x = numer) rem) || numer = 0 then 
+                List.length rem
+            else 
+                let rec IncreaseBase m d =
+                    if m >= d then m
+                    else IncreaseBase (10*m) d
+                LongDivide ((IncreaseBase numer n) % n) n (rem@[numer])
+        ([1..n] |> List.map (fun x -> LongDivide 1 x []) 
+               |> List.mapi (fun i x -> i,x) 
+               |> List.maxBy snd
+               |> fst) + 1
