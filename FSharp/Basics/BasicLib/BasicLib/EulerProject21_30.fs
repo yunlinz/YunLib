@@ -43,5 +43,5 @@ module EulerProject21_30 =
         let numbers = [0..9] |> List.map ToString
         PickNext [] numbers n
 
-    let Euler025FirstFibWithNDigits n = // using the constant time calculation of nth fibonacci number using the golden ratio, as n gets very large, psi^n->0 => F(n)->phi^n/sqrt5, so we take log10 of that and finds the first term that is greater than 1000
-        int(System.Math.Ceiling((float(n) + 0.5 * System.Math.Log10(5.)) / System.Math.Log10(GoldenRatio)))
+    let Euler025FirstFibWithNDigits n = // using the constant time calculation of nth fibonacci number using Binet's formula, as n gets very large, psi^n->0 => F(n)->phi^n/sqrt5, so we take log10 of that and finds the first term that is greater than 1000
+        int(Ceiling((float(n - 1) + 0.5 * Log10(5.)) / Log10((1. + sqrt 5.)/2.)))

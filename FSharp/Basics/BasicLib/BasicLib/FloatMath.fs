@@ -52,3 +52,6 @@ module FloatMath =
 
     let Fib n = ((GoldenRatio)**float(n) - (-1./GoldenRatio)**float(n)) / (sqrt 5.)
 
+    let Log10 n = System.Math.Log10 n
+
+    let Ceiling (n:float) = System.Math.Ceiling n
