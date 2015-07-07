@@ -1,0 +1,7 @@
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\bin\Debug\BasicLib.XML
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\bin\Debug\BasicLib.dll
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\bin\Debug\BasicLib.pdb
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\bin\Debug\FSharp.Core.dll
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\bin\Debug\FSharp.Core.xml
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\obj\Debug\BasicLib.dll
+D:\YunLib\FSharp\Basics\BasicLib\BasicLib\obj\Debug\BasicLib.pdb
