@@ -5,31 +5,24 @@
 #r @"..\packages\FSharp.Charting.0.90.12\lib\net40\FSharp.Charting.dll"
 #r "System.Drawing.dll"
 
-#load "Options.fs"
+#load "Library1.fs"
 open FinancialMath.PathGenerator
 open FinancialMath.OptionPricing
-open FinancialMath.Visualization
 open FSharp.Charting
 open System.Drawing
 open System
 
 let K = 100.
 let T = 0.25
-let M = 10000
-let N = 3
-let H = 125.
+let M = 100000
+let N = 100
 let payoff = asian_call K
 let S0 = 100.0
 let sigma = 0.4
 let r = 0.02
 let rnd = (new System.Random())
-let generator = generate_GBM_paths_by_log_AV
 
-// let paths = generate_GBM_paths_by_log_AV rnd S0 r sigma T N M
-
-// draw_chart rnd S0 r sigma T N M generate_GBM_paths_by_log_AV
-
-let C = price_option rnd S0 r sigma T N M generator payoff
+let C = price_option rnd S0 r sigma T N M payoff
 
 //let paths = FinancialMath.PathGenerator.generate_GBM_paths_by_log rnd S0 r sigma T N M
 //
