@@ -2,6 +2,7 @@
 
 module PathGenerator =
     open MathNet.Numerics.Distributions
+    open MathNet.Numerics.Statistics
     open System.Windows.Forms.DataVisualization
     open System.Drawing
     open FSharp.Charting
@@ -27,13 +28,6 @@ module PathGenerator =
              |> Chart.Line
              |> Chart.WithStyling (Color = color, BorderWidth = 2)
 
-    let S_T (path:float array) = path.[path.Length - 1]
-
-    let european_call K (path: float array) = max ((S_T path) - K) 0.0
-
-    let up_and_out_call K H (path:float array) = 
-        if Array.max path.[1..] >= H then 0.0
-        else european_call K path
 
     let simulate_payoffs rnd S0 r sigma T N M payoff = 
         [| for path in generate_GBM_paths_by_log rnd S0 r sigma T N M ->
@@ -42,3 +36,23 @@ module PathGenerator =
 
     let price_option rnd S0 r sigma T N M payoff = 
         simulate_payoffs rnd S0 r sigma T N M payoff |> Array.average
+
+    let price_option_2 rnd S0 r sigma T N M payoff = 
+        let Ys = simulate_payoffs rnd S0 r sigma T N M payoff
+        let C_estimate = Ys |> Array.average
+        let Y_var = Ys.Variance();
+        let std_error = sqrt( Y_var / (float M))
+        (C_estimate, Y_var, std_error)
+
+module OptionPricing = 
+    let S_T (path:float array) = path.[path.Length - 1]
+    
+    let european_call K (path: float array) = max ((S_T path) - K) 0.0
+
+    let up_and_out_call K H (path:float array) = 
+        if Array.max path.[1..] >= H then 0.0
+        else european_call K path
+
+    let asian_call K (path:float array) =
+        let S_avg = path.[1..] |> Array.average
+        max (S_avg - K) 0.0

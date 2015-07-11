@@ -7,15 +7,16 @@
 
 #load "Library1.fs"
 open FinancialMath.PathGenerator
+open FinancialMath.OptionPricing
 open FSharp.Charting
 open System.Drawing
 open System
 
 let K = 100.
 let T = 0.25
-let M = 10000000
-let N = 1
-let payoff = european_call K
+let M = 100000
+let N = 100
+let payoff = asian_call K
 let S0 = 100.0
 let sigma = 0.4
 let r = 0.02
