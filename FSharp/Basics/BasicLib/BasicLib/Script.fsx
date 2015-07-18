@@ -6,4 +6,4 @@
 #load "IntegerMath.fs"
 #load "FloatMath.fs"
 #load "EulerProject21_30.fs"
-BasicLib.EulerProject21_30.Euler026LongestRepeatingReciprocal 1000
+BasicLib.EulerProject21_30.Euler027PrimeQuadratics 999 999

@@ -59,3 +59,25 @@ module EulerProject21_30 =
                |> List.mapi (fun i x -> i,x) 
                |> List.maxBy snd
                |> fst) + 1
+    
+    let Euler027PrimeQuadratics amax bmax = // finds product ab where the number of primes is maximized given maximum value for a and for b
+        // notice that sequence for n has to start at 0 therefore b has to be prime
+        let rec PrimeSequence nlist i = // assumes i-th element of list is prime, use sieve of erosthenes to get other primes
+            if i >= List.length nlist then nlist
+            else
+                let nthItem = List.nth nlist i 
+                PrimeSequence (nlist |> List.filter (fun x -> (x = i || x % nthItem <> 0))) (i + 1)
+        let bvals = PrimeSequence [2..bmax] 0
+        //now can we eliminate some a's? if n=1, then 1+a+b is prime, other than the case of b=2, b is odd, and a has to be odd
+        //now let's eliminate b = 2 since for the n = 1 case, a has to be even and n=2 case, (6 + 2a) only -2 can make this prime, and the chain is very short lived
+        //rearranging some terms, n^2 + a*n + b = prime => a has to be odd
+        let ClosestOdd x = 
+            if (x % 2 = 0) then (x - 1)
+            else x
+        let aList = [-(ClosestOdd amax)..(ClosestOdd amax)] 
+        let rec GetPrimeQuadratics a b n =
+            if (not(IsPrime(int64( n * n + a * n + b)))) then (n - 1)
+            else GetPrimeQuadratics a b (n + 1)
+        let third (_,_,c) = c
+        let TupleProduct (a, b, c) = a*b
+        bvals |> List.map (fun b -> (aList |> List.map (fun a -> (a, b, GetPrimeQuadratics a b 1)) |> List.maxBy third)) |> List.maxBy third  |> TupleProduct

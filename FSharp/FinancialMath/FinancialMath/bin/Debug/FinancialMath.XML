@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FinancialMath</name></assembly>
+<members>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FinancialMath.Visualization">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FinancialMath.OptionPricing">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="">
+
+</member>
+<member name="T:FinancialMath.PathGenerator">
+
+</member>
+</members>
+</doc>

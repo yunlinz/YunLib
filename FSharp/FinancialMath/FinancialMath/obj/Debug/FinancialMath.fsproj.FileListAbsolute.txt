@@ -1,0 +1,15 @@
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FinancialMath.dll.config
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FinancialMath.XML
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FinancialMath.dll
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FinancialMath.pdb
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FSharp.Charting.dll
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FSharp.Core.dll
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\MathNet.Numerics.dll
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\MathNet.Numerics.FSharp.dll
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FSharp.Charting.pdb
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FSharp.Charting.xml
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\FSharp.Core.xml
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\MathNet.Numerics.xml
+D:\YunLib\FSharp\FinancialMath\FinancialMath\bin\Debug\MathNet.Numerics.FSharp.xml
+D:\YunLib\FSharp\FinancialMath\FinancialMath\obj\Debug\FinancialMath.dll
+D:\YunLib\FSharp\FinancialMath\FinancialMath\obj\Debug\FinancialMath.pdb
