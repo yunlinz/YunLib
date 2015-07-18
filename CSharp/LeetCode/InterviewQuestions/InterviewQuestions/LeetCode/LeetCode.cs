@@ -9,6 +9,7 @@ namespace InterviewQuestions.LeetCode
 {
     class LeetCode
     {
+		public LeetCode(){}
         /// <summary>
         /// Given an array of integers, find two numbers such that they add up to a specific target number.
         /// The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
@@ -135,26 +136,109 @@ namespace InterviewQuestions.LeetCode
         /// <returns></returns>
         public double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
+            // if the sum of the arrays is odd, then we are looking for 1 single number, while if the sum is even, we are looking for 2 
+            // if there are total odd elements, the element should be (totalLength - 1)/2 index in the overall array
+            // if there are total even elements, then elements should be (totalLength/2 - 1) and totalLength/2 
+            
             int n1Len = nums1.Length;
             int n2Len = nums2.Length;
+            int totalLength = n1Len + n2Len;
             int[] longer = (n1Len > n2Len) ? nums1 : nums2;
             int[] shorter = (n1Len < n2Len) ? nums1 : nums2;
             int longLen = Math.Max(n1Len, n2Len);
             int shortLen = Math.Min(n1Len, n2Len);
-
+            // first let's take the median of the longer list then determine where it would be in the shorter list 
+            // if it is 
             int idx1 = (int)Math.Floor(longLen / 2.0);
             int idx2 = 0;
             while (((idx1 + idx2)*2) != (longLen + shortLen))
             {
-
+            
             }
 
             return (longer[idx1] + shorter[idx2]) / 2;
-
-            // modified quickselect where there has to be 
+        }
+        
+        /// <summary>
+		/// Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
+        /// </summary>
+        /// <returns>The palindrome.</returns>
+        /// <param name="s">S.</param>
+		public string LongestPalindrome(string s) 
+        {
+            int sLen = s.Length;
+            if (sLen == 0) return "";
+            string longest = s.Substring(0,1);
+            for (int i = 0; i < sLen - 1; i++) {
+                string pal1 = ExpandAroundCenter(s, i, i);
+                string pal2 = ExpandAroundCenter(s, i, i + 1);
+                if (pal1.Length > longest.Length) longest = pal1;
+                if (pal2.Length > longest.Length) longest = pal2;
+            }
+            return longest;
         }
 
+        string ExpandAroundCenter(string s, int c1, int c2) {
+            int l = c1;
+            int r = c2;
+            int sLen = s.Length;
+			while ((l >= 0) && (r < sLen)  && (s[l] == s[r])) {
+                l--;
+                r++;
+            }
+            return s.Substring(l + 1 , r - l - 1);
+        }
+
+		/// <summary>
+		/// The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+		/// P   A   H   N
+		/// A P L S I I G
+		/// Y   I   R
+		/// And then read line by line: "PAHNAPLSIIGYIR"
+		/// Write the code that will take a string and make this conversion given a number of rows:
+		/// string convert(string text, int nRows);
+		/// convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
+		/// </summary>
+		/// <param name="s">S.</param>
+		/// <param name="numRows">Number rows.</param>
+		public string Convert(string s, int numRows){
+			// first row contains the 0th, 2(n-1)th, 4(n-1)th... characters
+			// second row contains the 1st, (2(n-1)-1)th, (4(n-1)+1)th... characters
+			// ...
+			// nth row contains (n-1)th, 3(n-1), 5(n-1)th ... characters
+			if (numRows >= s.Length || numRows == 1) return s;
+			string t = "";
 
 
+
+
+
+			char[,] chars = new char[numRows, s.Length];
+			int curCol = 0;
+			int curRow = 0;
+			int rowDir = 1;
+			int colDir = 0;
+			for (int i = 0; i < s.Length; i++) {
+				chars [curRow, curCol] = s [i];
+				curRow += rowDir;
+				curCol += colDir;
+				if (curRow == 0) {
+					rowDir = 1;
+					colDir = 0;
+				} else if (curRow == numRows - 1) {
+					rowDir = -1;
+					colDir = 1;
+				}
+			}
+			string t = "";
+			for (int i = 0; i < numRows; i++) {
+				for (int j = 0; j < chars.GetLength (1); j++) {
+					if (chars [i, j] == 0)
+						continue;
+					t += chars [i, j];
+				}
+			}
+			return t;
+		}
     }
 }

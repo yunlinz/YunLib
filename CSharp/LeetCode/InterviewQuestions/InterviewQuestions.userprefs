@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="InterviewQuestions/InterviewQuestions.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="InterviewQuestions/LeetCode/LeetCode.cs">
+    <Files>
+      <File FileName="InterviewQuestions/LeetCode/LeetCode.cs" Line="211" Column="4" />
+      <File FileName="InterviewQuestions/Program.cs" Line="14" Column="68" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
