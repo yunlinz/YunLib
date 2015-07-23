@@ -2,8 +2,8 @@
 // for more guidance on F# programming.
 
 // #load "Math.fs"
-
 #load "IntegerMath.fs"
 #load "FloatMath.fs"
 #load "EulerProject21_30.fs"
-BasicLib.EulerProject21_30.Euler027PrimeQuadratics 999 999
+BasicLib.EulerProject21_30.Euler030DigitPoweredSum 7
+

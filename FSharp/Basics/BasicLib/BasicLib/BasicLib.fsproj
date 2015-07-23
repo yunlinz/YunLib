@@ -47,6 +47,7 @@
     <Compile Include="EulerProject1_10.fs" />
     <Compile Include="EulerProject11_20.fs" />
     <Compile Include="EulerProject21_30.fs" />
+    <Compile Include="EulerProject31_40.fs" />
     <Compile Include="EulerProject111_120.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
