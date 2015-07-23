@@ -66,13 +66,13 @@ module EulerProject21_30 =
             if i >= List.length nlist then nlist
             else
                 let nthItem = List.nth nlist i 
-                PrimeSequence (nlist |> List.filter (fun x -> (x = i || x % nthItem <> 0))) (i + 1)
+                PrimeSequence (nlist |> List.filter (fun x -> (x = nthItem || x % nthItem <> 0))) (i + 1)
         let bvals = PrimeSequence [2..bmax] 0
         //now can we eliminate some a's? if n=1, then 1+a+b is prime, other than the case of b=2, b is odd, and a has to be odd
         //now let's eliminate b = 2 since for the n = 1 case, a has to be even and n=2 case, (6 + 2a) only -2 can make this prime, and the chain is very short lived
         //rearranging some terms, n^2 + a*n + b = prime => a has to be odd
         let ClosestOdd x = 
-            if (x % 2 = 0) then (x - 1)
+            if (x % 2 = 0) then (x + 1)
             else x
         let aList = [-(ClosestOdd amax)..(ClosestOdd amax)] 
         let rec GetPrimeQuadratics a b n =
@@ -81,3 +81,26 @@ module EulerProject21_30 =
         let third (_,_,c) = c
         let TupleProduct (a, b, c) = a*b
         bvals |> List.map (fun b -> (aList |> List.map (fun a -> (a, b, GetPrimeQuadratics a b 1)) |> List.maxBy third)) |> List.maxBy third  |> TupleProduct
+
+    let Euler028SumSquareCorners n =  //this has a closed form solution. The diagonal elements will be 1, (3,5,7,9), (13,17,21,25), (31,37,43,49)...(n^2-3(n-1),n^2-2(n-1),n^2-(n-1),n^2) if n is odd
+                                      // or if n is even then (1,2,3,4), (7,10,13,16) ... (n^2-3(n-1),n^2-2(n-1),n^2-(n-1),n^2)
+        let SumQuad (a,b,c,d) = a + b + c + d
+        let Corners m = (m * m - 3 * (m - 1), m * m - 2 * (m - 1), m * m - (m - 1), m * m)
+        match (n % 2) with
+        | 0 -> [2..2..n] |> List.map Corners |> List.sumBy SumQuad
+        | 1 -> ([3..2..n] |> List.map Corners |> List.sumBy SumQuad) + 1
+        | _ -> -1
+
+    let Euler029DistinctAtoB amax bmax = 
+        let rec pown (x:bigint) (y:bigint) =
+            if (y = 1I) then x
+            else if (y % 2I = 0I) then pown (x * x) (y / 2I)
+            else x * pown x (y - 1I) 
+        [2..amax] |> List.map (fun a -> [2..bmax] |> List.map (fun b -> (pown (bigint a) (bigint b)))) |> Seq.fold Seq.append Seq.empty |> Seq.distinct |> Seq.length
+
+    let Euler030DigitPoweredSum m =
+        let rec SumDigitPowered b n = // calculates the sum of digits of n raised to m-th power
+            match (n >= 10) with
+            | false -> b + (pown n m)
+            | true -> SumDigitPowered (b + (pown (n % 10) m)) (n / 10) 
+        [2..355000] |> List.mapi (fun i x -> (i+2, SumDigitPowered 0 x)) |> List.filter (fun t -> (fst t) = (snd t)) |> List.sumBy snd

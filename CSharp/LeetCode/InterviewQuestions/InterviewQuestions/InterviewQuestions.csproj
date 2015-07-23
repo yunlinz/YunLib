@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datatypes\Heap.cs" />
     <Compile Include="Datatypes\ListNode.cs" />
     <Compile Include="LeetCode\LeetCode.cs" />
     <Compile Include="Program.cs" />

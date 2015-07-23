@@ -208,37 +208,135 @@ namespace InterviewQuestions.LeetCode
 			// nth row contains (n-1)th, 3(n-1), 5(n-1)th ... characters
 			if (numRows >= s.Length || numRows == 1) return s;
 			string t = "";
+            int subLen = 2 * (numRows - 1);
+            int substrings = s.Length / numRows;
+            string[] subs = new string[substrings];
 
+            for (int i = 0; i < subs.Count(); i++)
+            {
+                if (i * subLen >= s.Length) subs[i] = "";
+                if ((i + 1) * subLen >= s.Length) subs[i] = s.Substring(i * subLen);
+                else subs[i] = s.Substring(i * subLen, subLen);
+            }
 
+            int l = 0;
+            int r = subLen;
+            while (r >= l )
+            {
+                
+                foreach (string st in subs)
+                {
+                    if (l < st.Length) t += st[l];
+                    if (r < st.Length && r != l && st[r] != 0) t += st[r];
+                }
+                l++;
+                r--;
 
-
-
-			char[,] chars = new char[numRows, s.Length];
-			int curCol = 0;
-			int curRow = 0;
-			int rowDir = 1;
-			int colDir = 0;
-			for (int i = 0; i < s.Length; i++) {
-				chars [curRow, curCol] = s [i];
-				curRow += rowDir;
-				curCol += colDir;
-				if (curRow == 0) {
-					rowDir = 1;
-					colDir = 0;
-				} else if (curRow == numRows - 1) {
-					rowDir = -1;
-					colDir = 1;
-				}
-			}
-			string t = "";
-			for (int i = 0; i < numRows; i++) {
-				for (int j = 0; j < chars.GetLength (1); j++) {
-					if (chars [i, j] == 0)
-						continue;
-					t += chars [i, j];
-				}
-			}
-			return t;
+            }
+            return t;
 		}
+
+        /// <summary>
+        /// Reverse digits of an integer.
+        /// Example1: x = 123, return 321
+        /// Example2: x = -123, return -321
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public int Reverse(int x)
+        {
+            if (x==0) return 0;
+            int y = 0;
+            int t = ((x > 0) ? 1 : -1);
+            int nextDigit;
+            while (x != 0)
+            {
+                nextDigit = x % 10;
+                try
+                {
+                    checked
+                    {
+                        y = y * 10 + nextDigit;
+                        x = x / 10;
+                    }
+                }
+                catch (Exception e)
+                {
+                    y = 0;
+                    break;
+                }
+            }
+            return y;
+        }
+
+        /// <summary>
+        /// Implement atoi to convert a string to an integer.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public int MyAtoi(string str)
+        {
+            str = str.Trim();
+            int s = 0;
+            bool isNegative = false;
+            bool isPositive = false;
+            foreach (char c in str)
+            {
+                if (c == '-' && !isPositive && !isNegative) isNegative = true;
+                else if (c == '+' && !isNegative && !isPositive) isPositive = true;
+                else if (!(c >= '0' && c <= '9'))
+                {
+                    break;
+                }
+                else
+                {
+                    try
+                    {
+                        checked
+                        {
+                            s = s * 10 + (isNegative?-1:1)*(c - '0');
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        if (isNegative) s = int.MinValue;
+                        else s = int.MaxValue;
+                        break;
+                    }
+                }
+            }
+            return s;
+        }
+
+        public bool IsPalindrome(int x)
+        {
+            if (x < 0) return false;
+            return (x == Reverse(x));
+        }
+
+        public int[] ProductWithoutSelf(int[] x)
+        {
+            int len = x.Length;
+            int[] y = new int[len];
+            int[] z = new int[len];
+            int acc1 = 1;
+            int acc2 = 1;
+            y[0] = acc1;
+            z[len - 1] = acc2;
+            for (int i = 1; i < y.Length; i++) 
+            { 
+                acc1 *= x[i - 1];
+                acc2 *= x[len - i];
+                y[i] = acc1;
+                z[len - i - 1] = acc2;
+            }
+            int[] result = new int[len];
+            for (int i = 0; i <len; i++) 
+            {
+                result[i] = y[i] * z[i];
+            }
+
+            return result;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace InterviewQuestions
     {
         static void Main(string[] args)
         {
-			Console.WriteLine ((new LeetCode.LeetCode()).Convert ("ABCDE", 3));
+            foreach (int x in (new LeetCode.LeetCode()).ProductWithoutSelf(new int[] { 1, 2, 3, 4, 5, 6, 7 })) { Console.WriteLine(x); }
         }
     }
 }
