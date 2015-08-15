@@ -11,7 +11,7 @@ namespace InterviewQuestions
     {
         static void Main(string[] args)
         {
-            foreach (int x in (new LeetCode.LeetCode()).ProductWithoutSelf(new int[] { 1, 2, 3, 4, 5, 6, 7 })) { Console.WriteLine(x); }
+            Console.WriteLine(5 / 2);
         }
     }
 }
